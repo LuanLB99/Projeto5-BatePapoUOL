@@ -1,0 +1,53 @@
+body {
+    margin: 0 auto;
+    background: red;
+    box-sizing: border-box;
+    
+}
+
+.conteudo {
+    background: red;
+    width: 412px;
+    height: 915px;
+}
+
+.topo {
+    background: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 80px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.topo ion-icon {
+    height: 45px;
+    width: 45px;
+}
+
+.conversas {
+    height: 414px;
+    background:#E5E5E5;
+    padding-top: 15px;
+}
+
+ul {
+    background: #DCDCDC;
+    width: 100%;
+    height: 40px;
+}
+
+.mensagens {
+    background: #FFFFFF;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+input {
+    outline: 0;
+    border: 0;
+}
