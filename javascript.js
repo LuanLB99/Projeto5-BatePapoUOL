@@ -1,4 +1,5 @@
-entrarNaSala()
+let nomes = []; 
+/* entrarNaSala()
 function entrarNaSala(){
     let nome = prompt("Digite seu lindo nome")
 
@@ -19,8 +20,24 @@ function escolhaOutronome(erro){
     if(status === 400) {
        entrarNaSala();
     }
+} */
+const promessa = axios.get("https://mock-api.driven.com.br/api/v6/uol/participants");
+promessa.then(chegou)
+console.log(promessa);
+
+function chegou(resposta){
+    console.log("Os dados chegaram");
+    console.log(resposta.data);
+    nomes = resposta.data;
+    atualizaNomes();
 }
 
-function carregaMensagens(){
-    const promessa = axio.get("https://mock-api.driven.com.br/api/v6/uol/participants")
+function atualizaNomes(){
+    const ul = document.querySelector('.conversas');
+    for (let i = 0; i < nomes.length; i++) {
+        ul.innerHTML += 
+        `
+        <li>${nomes[i].name} entrou na sala</li>
+        `
+    }
 }
