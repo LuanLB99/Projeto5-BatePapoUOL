@@ -1,8 +1,16 @@
- /* let nomes = []; 
+let from;
+let to;
+let text;
+let type;
+let time;
+let nome = prompt("Digite seu lindo nome");
+let message;
+let texto;
+let nomes = []; 
+let mensagens = [];
+
 entrarNaSala()
 function entrarNaSala(){
-    let nome = prompt("Digite seu lindo nome")
-
     const usuario = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants",{
         name: nome,
     });
@@ -41,19 +49,14 @@ function atualizaNomes(){
         `
     }
 }
-}*/
 
-let mensagens = [];
+
 buscarMensagens();
 
 function buscarMensagens() {
-    let from;
-    let to;
-    let text;
-    let type;
-    let time;
+    
     const mensagens = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages",{
-        from: from,
+        from: nome,
         to: to,
         text: text,
         type: type,
@@ -70,26 +73,59 @@ function puxaMensagens(mensagem){
 
 function insereMensagens(){
     const ul = document.querySelector('.conversas');
+    ul.innerHTML = ''
     for (let i = 0; i < mensagens.length; i++){
         if(mensagens[i].type === "message") {
         ul.innerHTML +=
         ` 
-        <li>${mensagens[i].from} para ${mensagens[i].to}: ${mensagens[i].text} </li>
+        <li class="mensagem">(${mensagens[i].time}) ${mensagens[i].from} para ${mensagens[i].to}: ${mensagens[i].text} </li>
         `}
         else if (mensagens[i].type === "status") {
             ul.innerHTML +=
             ` 
-            <li>${mensagens[i].from} entra na sala... </li>
+            <li class="entrada">(${mensagens[i].time}) ${mensagens[i].from} ${mensagens[i].text} </li>
             `
         }
 
         else if (mensagens[i].type === "private_message") {
             ul.innerHTML +=
             ` 
-        <li>${mensagens[i].from} reservadamente para ${mensagens[i].to}: ${mensagens[i].text} </li>
+        <li class="reservado">(${mensagens[i].time}) ${mensagens[i].from} reservadamente para ${mensagens[i].to}: ${mensagens[i].text} </li>
         `
         }
     }
+
 }
 
-setInterval(buscarMensagens, 3000);
+
+setInterval(buscarMensagens, 3000); 
+
+function enviarMensagem() {
+    const destinatario = "Todos";
+    const tipo = "message";
+    let textarea = document.getElementById('novaMsg').value;
+    const novamensagem = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", {
+    from: nome,
+	to: destinatario,
+	text: textarea,
+	type: tipo,
+    });
+    document.getElementById('novaMsg').value = ""
+    console.log(nome);
+    console.log(textarea);
+    console.log(tipo);
+    console.log(destinatario);
+    novamensagem.then(mandaMsg);
+    novamensagem.catch(deuErro);
+}
+
+function deuErro() {
+    console.log('deuMerda!!')
+}
+
+function mandaMsg() {
+    const ul = document.querySelector('.conversas');
+    ul.innerHTML +=  ` 
+    <li>${nome} para Todos: ${texto} </li>
+    `
+}

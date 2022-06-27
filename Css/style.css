@@ -1,14 +1,13 @@
 body {
     margin: 0 auto;
-    background: red;
     box-sizing: border-box;
     
 }
 
 .conteudo {
-    background: red;
     width: 412px;
     height: 915px;
+    margin: 0 auto;
 }
 
 .topo {
@@ -27,15 +26,37 @@ body {
 }
 
 .conversas {
-    height: 414px;
+    height: 393px;
     background:#E5E5E5;
     padding-top: 15px;
+    overflow-x: hidden;
 }
 
 ul {
     background: #DCDCDC;
     width: 100%;
     height: 40px;
+    overflow-y: auto;
+}
+
+li {
+    width: 100%;
+    min-height: 40px;
+    max-height: 100%;
+    border-radius: 2px;
+
+}
+
+.entrada {
+    background: #DCDCDC;
+}
+
+.mensagem {
+    background: #FFFFFF;
+}
+
+.reservado {
+    background: #FFDEDE;
 }
 
 .mensagens {
@@ -47,7 +68,12 @@ ul {
     padding: 0 20px;
 }
 
-input {
+textarea {
     outline: 0;
     border: 0;
+    resize: none;
+}
+
+.envio {
+    cursor: pointer;
 }
