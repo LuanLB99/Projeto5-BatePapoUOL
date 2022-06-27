@@ -78,25 +78,25 @@ function insereMensagens(){
         if(mensagens[i].type === "message") {
         ul.innerHTML +=
         ` 
-        <li class="mensagem">(${mensagens[i].time}) ${mensagens[i].from} para ${mensagens[i].to}: ${mensagens[i].text} </li>
+       
+        <li class="mensagem">  <span class="horario"> (${mensagens[i].time})</span> <span class="texto"> <bold>${mensagens[i].from}</bold> para <bold>${mensagens[i].to}</bold>: ${mensagens[i].text} </span> </li>
         `}
         else if (mensagens[i].type === "status") {
             ul.innerHTML +=
             ` 
-            <li class="entrada">(${mensagens[i].time}) ${mensagens[i].from} ${mensagens[i].text} </li>
+            <li class="entrada"> <span class="horario"> (${mensagens[i].time})</span> <span class="texto"> <bold>${mensagens[i].from}</bold> ${mensagens[i].text} </span> </li>
             `
         }
 
         else if (mensagens[i].type === "private_message") {
             ul.innerHTML +=
             ` 
-        <li class="reservado">(${mensagens[i].time}) ${mensagens[i].from} reservadamente para ${mensagens[i].to}: ${mensagens[i].text} </li>
+        <li class="reservado">(${mensagens[i].time}) <bold>${mensagens[i].from}</bold> reservadamente para <bold>${mensagens[i].to}</bold>: ${mensagens[i].text} </li>
         `
         }
     }
 
 }
-
 
 setInterval(buscarMensagens, 3000); 
 
