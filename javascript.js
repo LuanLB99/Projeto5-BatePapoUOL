@@ -99,6 +99,7 @@ function insereMensagens(){
 }
 
 setInterval(buscarMensagens, 3000); 
+setInterval(mantemOnline, 5000);
 
 function enviarMensagem() {
     const destinatario = "Todos";
@@ -120,7 +121,7 @@ function enviarMensagem() {
 }
 
 function deuErro() {
-    console.log('deuMerda!!')
+    window.location.reload();
 }
 
 function mandaMsg() {
@@ -128,4 +129,11 @@ function mandaMsg() {
     ul.innerHTML +=  ` 
     <li>${nome} para Todos: ${texto} </li>
     `
+}
+
+function mantemOnline() {
+    const online = axios.post("https://mock-api.driven.com.br/api/v6/uol/status",{
+    name:nome,
+    })
+    console.log(nome);
 }
